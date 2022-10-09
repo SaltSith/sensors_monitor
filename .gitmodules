@@ -1,0 +1,6 @@
+[submodule "zmq_plugin"]
+	path = zmq_plugin
+	url = git@github.com:SaltSith/zmq_plugin.git
+[submodule "monitor_protos"]
+	path = monitor_protos
+	url = git@github.com:SaltSith/monitor_protos.git
