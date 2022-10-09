@@ -12,6 +12,17 @@ target_link_libraries(${CMAKE_PROJECT_NAME} pthread)
 add_subdirectory(monitor)
 target_link_libraries(${CMAKE_PROJECT_NAME} monitor)
 
+add_subdirectory(monitor/monitor_queue)
+target_link_libraries(${CMAKE_PROJECT_NAME} monitor_queue)
+
+add_subdirectory(monitor/monitor_events)
+target_link_libraries(${CMAKE_PROJECT_NAME} monitor_events)
+
+add_subdirectory(monitor/monitor_timer)
+target_link_libraries(${CMAKE_PROJECT_NAME} monitor_timer)
+
+
+# zmq plugin
 add_subdirectory(zmq_plugin)
 target_link_libraries(${CMAKE_PROJECT_NAME} zmq_plugin)
 
@@ -38,3 +49,5 @@ target_link_libraries(test_plugin_task zmq_plugin_socket)
 target_link_libraries(test_plugin_task czmq)
 target_link_libraries(test_plugin_task zmq)
 add_test(NAME test_plugin_task COMMAND test_plugin_task)
+
+#testing monitor

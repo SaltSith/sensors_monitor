@@ -1,5 +1,5 @@
 #include "monitor_queue.h"
-#include "monitor_events.h"
+#include "monitor_events/monitor_events.h"
 
 #include <mqueue.h>
 #include <stdlib.h>
