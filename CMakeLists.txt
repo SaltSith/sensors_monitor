@@ -21,6 +21,14 @@ target_link_libraries(${CMAKE_PROJECT_NAME} monitor_events)
 add_subdirectory(monitor/monitor_timer)
 target_link_libraries(${CMAKE_PROJECT_NAME} monitor_timer)
 
+add_subdirectory(monitor_protos/nanopb)
+target_link_libraries(${CMAKE_PROJECT_NAME} nanopb)
+
+add_subdirectory(monitor_protos/src)
+target_link_libraries(${CMAKE_PROJECT_NAME} monitor_protos)
+
+
+
 
 # zmq plugin
 add_subdirectory(zmq_plugin)
