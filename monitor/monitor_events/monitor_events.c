@@ -8,7 +8,7 @@ static int monitor_event_handler_check_cpu_temperature(void * args);
 
 typedef int(*monitor_event_handler_type)(void * args);
 
-monitor_event_handler_type monitor_event_handlers[MONITOR_EVENT_LAST] = {
+static monitor_event_handler_type monitor_event_handlers[MONITOR_EVENT_LAST] = {
         monitor_event_handler_check_cpu_temperature,
 };
 

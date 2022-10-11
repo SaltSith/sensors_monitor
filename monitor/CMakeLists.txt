@@ -1,5 +1,2 @@
-add_library(monitor 
-            monitor_events.h monitor_events.c
-            monitor_queue.h monitor_queue.c
-            monitor_timer.h monitor_timer.c
-            monitor.h monitor.c)
+add_library(monitor monitor.h monitor.c)
+target_link_libraries(monitor monitor_queue monitor_timer monitor_events)

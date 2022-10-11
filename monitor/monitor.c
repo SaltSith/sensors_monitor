@@ -1,6 +1,6 @@
 #include "monitor.h"
-#include "monitor_queue.h"
-#include "monitor_timer.h"
+#include "monitor_queue/monitor_queue.h"
+#include "monitor_timer/monitor_timer.h"
 
 #include <stdlib.h>
 #include <stdio.h>
