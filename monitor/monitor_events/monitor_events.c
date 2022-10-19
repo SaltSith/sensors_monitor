@@ -3,9 +3,15 @@
 #include "monitor_commander/monitor_commander.h"
 #include "pb_helper/pb_helper.h"
 
+#include "zmq_plugin/zmq_plugin_task.h"
+
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
 
+#include <string.h>
+
+static uint8_t *send_buff;
 
 static int monitor_event_handler_check_cpu_temperature(void * args);
 
@@ -25,9 +31,14 @@ monitor_event_handler_check_cpu_temperature(void * args)
     monitor_MonitorMsg *message = monitor_commander_temperature_async(cpu_temperature);
     assert(message != NULL);
 
-    uint8_t raw_buff[sizeof(monitor_MonitorMsg)] = { 0 };
+    send_buff = malloc(sizeof(monitor_MonitorMsg));
+    assert(send_buff != NULL);
 
-    int bytes_written = pb_helper_encode_msg((void *)message, raw_buff, sizeof(monitor_MonitorMsg));
+    printf("send_buff 1 addr = %x\r\n", send_buff);
+
+    int bytes_written = pb_helper_encode_msg(message, send_buff, sizeof(monitor_MonitorMsg));
+
+    zmq_plugin_task_send_msg(send_buff, bytes_written);
 
     return 0;
 }
