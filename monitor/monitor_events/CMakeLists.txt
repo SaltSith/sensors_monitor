@@ -4,4 +4,4 @@ add_library(monitor_events
 include_directories ("${PROJECT_SOURCE_DIR}/monitor")
 include_directories ("${PROJECT_SOURCE_DIR}/monitor_protos")
 include_directories ("${PROJECT_SOURCE_DIR}/monitor_protos/nanopb")
-
+include_directories ("${PROJECT_SOURCE_DIR}/")
