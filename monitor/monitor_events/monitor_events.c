@@ -26,15 +26,13 @@ static int
 monitor_event_handler_check_cpu_temperature(void * args)
 {
     const float cpu_temperature = 45;
-    printf("CPU temp %fstC C\r\n", cpu_temperature);
+    const float gpu_temperature = 67.7;
 
-    monitor_MonitorMsg *message = monitor_commander_temperature_async(cpu_temperature);
+    monitor_MonitorMsg *message = monitor_commander_temperature_async(cpu_temperature, gpu_temperature);
     assert(message != NULL);
 
     send_buff = malloc(sizeof(monitor_MonitorMsg));
     assert(send_buff != NULL);
-
-    printf("send_buff 1 addr = %x\r\n", send_buff);
 
     int bytes_written = pb_helper_encode_msg(message, send_buff, sizeof(monitor_MonitorMsg));
 

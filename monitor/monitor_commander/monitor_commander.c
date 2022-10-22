@@ -44,17 +44,24 @@ monitor_MonitorMsg
 }
 
 monitor_MonitorMsg
-*monitor_commander_temperature_async(const float cpu_temperature)
+*monitor_commander_temperature_async(const float cpu_temperature, const float gpu_temperature)
 {
     monitor_MonitorMsg *message = monitor_commander_prepare_message(util_MsgStatus_STATUS_OK, monitor_MonitorMsg_temperature_async_tag);
     assert(message != NULL);
 
-    message->msg.temperature_async.temperatures_count = 1;
+    message->msg.temperature_async.temperatures_count = 2;
+
     message->msg.temperature_async.temperatures[0].has_element = true;
     message->msg.temperature_async.temperatures[0].element = monitor_Temperature_Element_CPU;
 
     message->msg.temperature_async.temperatures[0].has_temp = true;
     message->msg.temperature_async.temperatures[0].temp = cpu_temperature;
+
+    message->msg.temperature_async.temperatures[1].has_element = true;
+    message->msg.temperature_async.temperatures[1].element = monitor_Temperature_Element_GPU;
+
+    message->msg.temperature_async.temperatures[1].has_temp = true;
+    message->msg.temperature_async.temperatures[1].temp = gpu_temperature;
 
     return message;
 }
