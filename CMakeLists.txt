@@ -15,17 +15,29 @@ target_link_libraries(${CMAKE_PROJECT_NAME} monitor)
 add_subdirectory(monitor/monitor_queue)
 target_link_libraries(${CMAKE_PROJECT_NAME} monitor_queue)
 
+add_subdirectory(monitor/monitor_timer)
+target_link_libraries(${CMAKE_PROJECT_NAME} monitor_timer)
+
 add_subdirectory(monitor/monitor_events)
 target_link_libraries(${CMAKE_PROJECT_NAME} monitor_events)
 
-add_subdirectory(monitor/monitor_timer)
-target_link_libraries(${CMAKE_PROJECT_NAME} monitor_timer)
+add_subdirectory(monitor/monitor_commander)
+target_link_libraries(${CMAKE_PROJECT_NAME} monitor_commander)
+
+add_subdirectory(postman)
+target_link_libraries(${CMAKE_PROJECT_NAME} postman)
 
 add_subdirectory(monitor_protos/nanopb)
 target_link_libraries(${CMAKE_PROJECT_NAME} nanopb)
 
-add_subdirectory(monitor_protos/src)
+add_subdirectory(monitor_protos/protos_src)
 target_link_libraries(${CMAKE_PROJECT_NAME} monitor_protos)
+
+add_subdirectory(monitor_protos/pb_helper)
+target_link_libraries(${CMAKE_PROJECT_NAME} pb_helper)
+
+
+
 
 
 
@@ -57,5 +69,16 @@ target_link_libraries(test_plugin_task zmq_plugin_socket)
 target_link_libraries(test_plugin_task czmq)
 target_link_libraries(test_plugin_task zmq)
 add_test(NAME test_plugin_task COMMAND test_plugin_task)
+
+#testing pb_helper
+add_executable(test_pb_helper monitor_protos/pb_helper/test/test.c)
+target_include_directories(test_pb_helper PRIVATE monitor_protos)
+target_include_directories(test_pb_helper PRIVATE monitor_protos/protos_src)
+target_include_directories(test_pb_helper PRIVATE monitor_protos/nanopb)
+
+target_link_libraries(test_pb_helper pb_helper)
+target_link_libraries(test_pb_helper nanopb)
+target_link_libraries(test_pb_helper monitor_protos)
+
 
 #testing monitor
