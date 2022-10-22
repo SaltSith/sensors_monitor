@@ -25,12 +25,11 @@ static void
         int result = select(monitor_queue + 1, &rfds, NULL, NULL, NULL);
 
         if (result == -1) {
-            printf("Error on select.\r\n");
+            fprintf(stderr, "Select error\r\n");
         } else if (result) {
-            printf("Data is available on sensors task queue.\r\n");
             monitor_queue_pop();
         } else {
-            printf("No data within given timeout.\r\n");
+            fprintf(stderr, "No data within given timeout.\r\n");
         }
     }
 
