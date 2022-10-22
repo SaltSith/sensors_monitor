@@ -3,3 +3,4 @@ add_library(monitor_commander
 
 include_directories ("${PROJECT_SOURCE_DIR}/monitor_protos")
 include_directories ("${PROJECT_SOURCE_DIR}/monitor_protos/nanopb")
+
