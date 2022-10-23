@@ -36,6 +36,11 @@ monitor_event_handler_check_cpu_temperature(void * args)
 
     int bytes_written = pb_helper_encode_msg(message, send_buff, sizeof(monitor_MonitorMsg));
 
+    if (bytes_written == -1) {
+        free(send_buff);
+    	return -1;
+    }
+
     zmq_plugin_task_send_msg(send_buff, bytes_written);
 
     return 0;
