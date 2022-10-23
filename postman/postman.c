@@ -27,6 +27,7 @@ postman_send_message(uint8_t *msg_buff, size_t msg_buff_size)
     }
 
     // viewer_queue_push_event_process_in_message(in_msg);
+    free(in_msg);// delete when push to other task
 
     return 0;
 }
