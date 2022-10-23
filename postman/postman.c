@@ -21,8 +21,6 @@ postman_send_message(uint8_t *msg_buff, size_t msg_buff_size)
     int decode_result = pb_helper_decode_msg(msg_buff, msg_buff_size, in_msg);
     assert(decode_result == 0);
 
-    free(msg_buff);
-
     if (in_msg->which_msg == monitor_MonitorMsg_hello_async_tag) {
         free(in_msg);
         return 1;
