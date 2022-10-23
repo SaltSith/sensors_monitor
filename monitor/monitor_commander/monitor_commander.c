@@ -17,6 +17,7 @@ static void
 {
     monitor_out_msg = malloc(sizeof(monitor_MonitorMsg));
     assert(monitor_out_msg != NULL);
+    memset(monitor_out_msg, 0 , sizeof(monitor_MonitorMsg));
 
     monitor_out_msg->has_uid = true;
     monitor_out_msg->uid = rand() % UINT32_MAX;

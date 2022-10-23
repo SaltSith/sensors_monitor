@@ -8,4 +8,4 @@ ctest
 cd build
 ./test_plugin_socket
 ./test_plugin_task
-
+./test_pb_helper
